@@ -13,6 +13,9 @@
 
     return result;
   };
+
+  var document_obj = window.document;
+  
   var request_menu = xhr({
     method: "GET",
     url: "/menu",
@@ -26,12 +29,12 @@
   });
 
   var menu_grid = function(data) {
-    var menu_obj = document.querySelector(".js-menu");
+    var menu_obj = document_obj.querySelector(".js-menu");
     while (menu_obj.hasChildNodes()) {
       menu_obj.removeChild(menu_obj.firstChild);
     }
     for (var i = 0; i < data.length; i++) {
-      var menu = document.createElement("li");
+      var menu = document_obj.createElement("li");
       menu.innerHTML = data[i].name;
       menu.className = data[i].code;
 
@@ -40,12 +43,13 @@
   };
 
   var document_grid = function(data) {
-    var document_obj = document.querySelector(".js-document");
+    // 왜 document가 undefined가 뜨지??
+    var document_obj = document_obj.querySelector(".js-document");
     while (document_obj.hasChildNodes()) {
       document_obj.removeChild(document_obj.firstChild);
     }
     for (var i = 0; i < data.length; i++) {
-      var document = dodcument.createElement("li");
+      var document = document_obj.createElement("li");
       menu.innerHTML = data[i].name;
       menu.className = "document-class-" + data[i].uid;
       document_obj.appendChild(document);
